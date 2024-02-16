@@ -1,23 +1,32 @@
-import logo from './logo.svg';
+
+import React, { useState } from 'react';
 import './App.css';
+import axios from 'axios';
+import SearchBar from './SearchBar';
+import ImageList from './ImageList';
 
 function App() {
+  const [images, setImages] = useState([]);
+
+  const handleSearch = async (query) => {
+    try {
+      const response = await axios.get('https://api.unsplash.com/search/photos', {
+        params: {
+          query: query,
+          client_id: 'cfZZXHaqYb-WjVu4suypZS00XbMGZId0GyD02D8S49o',
+        },
+      });
+      setImages(response.data.results);
+    } catch (error) {
+      console.error('Error fetching images:', error);
+    }
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Image Search App</h1>
+      <SearchBar onSubmit={handleSearch} />
+      <ImageList images={images} />
     </div>
   );
 }
