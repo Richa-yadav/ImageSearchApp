@@ -1,8 +1,10 @@
-# Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
+
+The project is deployed on Netlify. 
+Follow [https://developer-image-searching-application.netlify.app/] to open the app on your browser
 
 In the project directory, you can run:
 
